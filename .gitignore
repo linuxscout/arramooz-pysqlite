@@ -99,3 +99,9 @@ ENV/
 
 # mypy
 .mypy_cache/
+/data-source/database.db
+/data-source/index.sql
+/data-source/m.db
+/data-source/mysqliteDB.db
+/data-source/nouns.dict.sql
+/data-source/verbs.sql
