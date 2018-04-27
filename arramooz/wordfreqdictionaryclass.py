@@ -350,9 +350,9 @@ class WordFreqDictionary:
         idlist = []
         idlist = self.lookup(text, word_type)
         # if there are many take the first
-        print( text.encode('utf8'), word_type, len (idlist))
+        #~ print( text.encode('utf8'), word_type, len (idlist))
         if idlist:
-            print(idlist)
+            #~ print(idlist)
             freq = dict(idlist[0]).get('freq',0)
             return freq 
         else: 
