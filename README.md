@@ -1,4 +1,4 @@
-#Arramooz
+# Arramooz
 Arabic Dictionary for Morphological analysis (Python + SQLite API)
 
 [![downloads]( https://img.shields.io/sourceforge/dt/arramooz.svg)](http://sourceforge.org/projects/arramooz)
@@ -19,7 +19,7 @@ Source  |[Github](http://github.com/linuxscout/arramooz-pysqlite)
 Download  |[sourceforge](http://arramooz-pysqlite.sourceforge.net)
 Feedbacks  |[Comments](https://github.com/linuxscout/arramooz-pysqlite/)
 Accounts  |[@Twitter](https://twitter.com/linuxscout)  [@Sourceforge](http://sourceforge.net/projectsarramooz-pysqlite/)
-#Description
+# Description
 
 Arramooz Alwaseet is an open source Arabic dictionary for morphological analyze,
 It can help Natural Language processing developers.
@@ -31,11 +31,11 @@ This dictionary consists of three parts :
 - verbs
 - Nouns
 
-##Files formats and BUILD Dictionary in multiple format
+## Files formats and BUILD Dictionary in multiple format
 
 Look at  [arramooz](https://github.com/linuxscout/arramooz/)
 
-###Database description
+### Database description
 
 Field | Description |  وصف
 -------------|----------------|-----------------------------------
@@ -56,7 +56,7 @@ passive |can be conjugated in passive voice|يتصرف في المبني للم�
 future_moode |can be conjugated in  future moode (jusive, subjuctive, ) |يتصرف في المضارع المجزوم أو المنصوب
 confirmed  |can be conjugated in confirmed  tenses|يتصرف في المؤكد
 
-###SQL format of verb
+### SQL format of verb
 
 ```SQL
 create table verbs
@@ -84,9 +84,9 @@ create table verbs
             );
 ```
             
-##Nouns
+## Nouns
 
-###Database description
+### Database description
 
 Field | Description |  وصف
 -------------|----------------|-----------------------------------
@@ -119,7 +119,7 @@ annex |accept the oral annexation|يقبل الإضافة إلى ما بعده �
 definition |word description|شرح الكلمة
 note |notes about the dictionary entry.|ملاحظات على المدخل في القاموس
 
-###SQL format of noun
+### SQL format of noun
 
 ```sql
 CREATE TABLE  IF NOT EXISTS `nouns` (
@@ -157,7 +157,7 @@ CREATE TABLE  IF NOT EXISTS `nouns` (
           `note` text
         ) ;
 ```
-###Usage
+### Usage
 ```python
 >>> import arramooz.arabicdictionary 
 >>> mydict = arramooz.arabicdictionary.ArabicDictionary('verbs')

@@ -1,6 +1,5 @@
-#! /usr/bin/python
-from distutils.core import setup
-from glob import glob
+#!/usr/bin/python
+from setuptools import setup
 
 # to install type:
 # python setup.py install --root=/
@@ -14,7 +13,9 @@ setup (name='arramooz-pysqlite', version='0.1',
       Description="Arramooz; Arabic Dictionary for Morphological analysis - python + sqlite",
       package_dir={'arramooz': 'arramooz'},
       packages=['arramooz'],
-      # include_package_data=True,
+      install_requires=[ 'pyarabic>=0.6.2',
+      ],         
+      include_package_data=True,
       package_data = {
         'arramooz': ['doc/*.*','doc/html/*', 'data/*.sqlite', 'data/*.sql'],
         },

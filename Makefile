@@ -29,7 +29,7 @@ wheel3:
 sdist:
 	sudo python setup.py sdist
 upload:
-	echo "use twine upload dist/arramooz-pysqlite-0.3.tar.gz"
+	echo "use twine upload dist/arramooz-pysqlite-0.1.tar.gz"
 	
 test:
 	pytest pyarabic/test_araby.py
