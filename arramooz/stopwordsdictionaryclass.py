@@ -229,9 +229,11 @@ class StopWordsDictionary:
           self.table_name, text)
         try:
             self.cursor.execute(sql)
-        except sqlite.OperationalError:
-            print("Fatal error in query: stopwords")
-            return []
+        #~ except sqlite.OperationalError:
+            #~ print("Fatal error in query: stopwords on %s"%sql)
+            #~ return []
+        except sqlite.Error as er:
+            print('er:', er.message, "Fatal error in query: stopwords on %s"%sql)
             
         if self.cursor: 
             # return self.curser.fetchall()

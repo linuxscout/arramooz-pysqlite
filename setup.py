@@ -4,7 +4,7 @@ from setuptools import setup
 # to install type:
 # python setup.py install --root=/
 
-setup (name='arramooz-pysqlite', version='0.1',
+setup (name='arramooz_pysqlite', version='0.2',
       description='Arramooz: Arabic Dictionary for Morphological analysis - python + sqlite',
       author='Taha Zerrouki',
       author_email='taha.zerrouki@gmail.com',

@@ -30,12 +30,15 @@ from __future__ import (
     division,
     )
 import arramooz.arabicdictionary as arz
+import arramooz.stopwordsdictionaryclass as arstop
 def mainly():
     """
     main test
     """
     #ToDo: use the full dictionary of arramooz
     mydict = arz.ArabicDictionary('verbs')
+#    mydict_stop= arstop.StopWordsDictionary("classedstopwords")
+
     wordlist = [u"استقلّ", u'استقل', u"كذب"]
     tmp_list = []
     for word in wordlist:
@@ -44,6 +47,18 @@ def mainly():
             word_tuple = dict(word_tuple)
             vocalized = word_tuple['vocalized']
             tmp_list.append(dict(word_tuple))
-    print(repr(tmp_list).replace('},','},\n').decode("unicode-escape"))            
+    print(repr(tmp_list).replace('},','},\n').decode("unicode-escape")) 
+
+    mydict = arstop.StopWordsDictionary('classedstopwords')
+    wordlist = [u"بعضهما", u'في', u"منً", u"أن", u'عندما']
+    tmp_list =[]
+    for word in wordlist:
+        print("-------")
+        print("word looked up ", mydict.is_stopword(word))
+        idlist = mydict.lookup(word)
+        for word_tuple in idlist:
+            #~ vocalized = word_tuple["vocalized"]
+            tmp_list.append(dict(word_tuple))
+    print(repr(tmp_list).replace('},','},\n').decode("unicode-escape"))           
 if __name__  ==  '__main__':
     mainly()
