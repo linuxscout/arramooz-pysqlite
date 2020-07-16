@@ -32,6 +32,8 @@ upload:
 	echo "use twine upload dist/arramooz-pysqlite-0.1.tar.gz"
 	
 test:
-	pytest pyarabic/test_araby.py
+	python -m unittest discover tests
+test3:
+	python3 -m unittest discover tests
 doc:
 	epydoc --config epydoc.conf

@@ -3,9 +3,14 @@ from setuptools import setup
 
 # to install type:
 # python setup.py install --root=/
-
-setup (name='arramooz_pysqlite', version='0.2',
+from io import open
+def readme():
+    with open('README.rst', encoding="utf8") as f:
+        return f.read()
+setup (name='arramooz_pysqlite', version='0.3',
       description='Arramooz: Arabic Dictionary for Morphological analysis - python + sqlite',
+      long_description = readme(),      
+
       author='Taha Zerrouki',
       author_email='taha.zerrouki@gmail.com',
       url='http://arramooz-pysqlite.sourceforge.net/',

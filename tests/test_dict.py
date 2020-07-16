@@ -29,36 +29,24 @@ from __future__ import (
     unicode_literals,
     division,
     )
+import unittest
+import sys
+sys.path.append('../naftawayh')    
 import arramooz.arabicdictionary as arz
-import arramooz.stopwordsdictionaryclass as arstop
-def mainly():
-    """
-    main test
-    """
-    #ToDo: use the full dictionary of arramooz
-    mydict = arz.ArabicDictionary('verbs')
-#    mydict_stop= arstop.StopWordsDictionary("classedstopwords")
 
-    wordlist = [u"استقلّ", u'استقل', u"كذب"]
-    tmp_list = []
-    for word in wordlist:
-        foundlist = mydict.lookup(word)
-        for word_tuple in foundlist:
-            word_tuple = dict(word_tuple)
-            vocalized = word_tuple['vocalized']
-            tmp_list.append(dict(word_tuple))
-    print(repr(tmp_list).replace('},','},\n').decode("unicode-escape")) 
+class ArramoozTestCase(unittest.TestCase):
+    """Tests for `Arramooz`."""
+    
+    def test_lookup(self):
+        """Test lookup"""
+        mydict = arz.ArabicDictionary('verbs') 
+        #~ wordlist = [u"استقلّ", u'استقل', u"كذب"]
+        #~ foundlist = mydict.lookup(word)       
+        self.assertEqual(len(mydict.lookup(u"استقلّ")), 0)
+        self.assertEqual(len(mydict.lookup(u'استقل')), 1)
+        self.assertEqual(len(mydict.lookup(u"كذب")), 2)
 
-    mydict = arstop.StopWordsDictionary('classedstopwords')
-    wordlist = [u"بعضهما", u'في', u"منً", u"أن", u'عندما']
-    tmp_list =[]
-    for word in wordlist:
-        print("-------")
-        print("word looked up ", mydict.is_stopword(word))
-        idlist = mydict.lookup(word)
-        for word_tuple in idlist:
-            #~ vocalized = word_tuple["vocalized"]
-            tmp_list.append(dict(word_tuple))
-    print(repr(tmp_list).replace('},','},\n').decode("unicode-escape"))           
+
+         
 if __name__  ==  '__main__':
-    mainly()
+    unittest.main()
