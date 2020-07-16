@@ -175,7 +175,7 @@ CREATE TABLE  IF NOT EXISTS `nouns` (
 {'think_trans': 1, 'passive': 0, 'confirmed': 0, 'vocalized': u'كَذَّبَ', 'stamped': u'كذب', 'future_moode': 0, 'triliteral': 0, 'future': 0, 'unthink_trans': 0, 'past': 0, 'unvocalized': u'كذب', 'future_type': u'َ', 'double_trans': 0, 'normalized': u'كذب', 'reflexive_trans': 0, 'imperative': 0, 'transitive': 1, 'root': u'كذب', 'id': 2869}]
 
 ```
-*[requirement]
+####[requirement]
 
     1- libqutrub
     
