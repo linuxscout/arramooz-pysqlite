@@ -83,7 +83,7 @@ class ArabicDictionary:
 
         if os.path.exists(file_path):
             try:
-                self.db_connect = sqlite.connect(file_path, check_same_thread=false)
+                self.db_connect = sqlite.connect(file_path, check_same_thread=False)
                 self.db_connect.row_factory = sqlite.Row 
                 self.cursor = self.db_connect.cursor()
             except  IOError:
