@@ -5,11 +5,12 @@ from setuptools import setup
 # python setup.py install --root=/
 from io import open
 def readme():
-    with open('README.rst', encoding="utf8") as f:
+    with open('README.md', encoding="utf8") as f:
         return f.read()
-setup (name='arramooz_pysqlite', version='0.3',
+setup (name='arramooz_pysqlite', version='0.4',
       description='Arramooz: Arabic Dictionary for Morphological analysis - python + sqlite',
-      long_description = readme(),      
+      long_description = readme(),  
+      long_description_content_type='text/markdown',     
 
       author='Taha Zerrouki',
       author_email='taha.zerrouki@gmail.com',

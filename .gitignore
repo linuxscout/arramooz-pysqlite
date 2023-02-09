@@ -105,3 +105,8 @@ ENV/
 /data-source/mysqliteDB.db
 /data-source/nouns.dict.sql
 /data-source/verbs.sql
+/.idea/
+/doc/html/
+/mypythonenv/
+/tests/output
+*.zip

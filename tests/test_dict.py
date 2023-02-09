@@ -22,16 +22,9 @@
 #  
 #  
 
-
-from __future__ import (
-    absolute_import,
-    print_function,
-    unicode_literals,
-    division,
-    )
 import unittest
 import sys
-sys.path.append('../naftawayh')    
+sys.path.append('../')
 import arramooz.arabicdictionary as arz
 
 class ArramoozTestCase(unittest.TestCase):
@@ -46,7 +39,5 @@ class ArramoozTestCase(unittest.TestCase):
         self.assertEqual(len(mydict.lookup(u'استقل')), 1)
         self.assertEqual(len(mydict.lookup(u"كذب")), 2)
 
-
-         
 if __name__  ==  '__main__':
     unittest.main()

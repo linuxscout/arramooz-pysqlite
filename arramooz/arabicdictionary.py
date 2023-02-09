@@ -208,11 +208,11 @@ class ArabicDictionary:
             >>> wordlist = [u"استقلّ", u'استقل', u"كذب"]
             >>> tmp_list = []
             >>> for word in wordlist:
-            >>> foundlist = mydict.lookup(word)
-            >>> for word_tuple in foundlist:
-            >>>     word_tuple = dict(word_tuple)
-            >>>     vocalized = word_tuple['vocalized']
-            >>>     tmp_list.append(dict(word_tuple))
+            >>>     foundlist = mydict.lookup(word)
+            >>>     for word_tuple in foundlist:
+            >>>         word_tuple = dict(word_tuple)
+            >>>         vocalized = word_tuple['vocalized']
+            >>>         tmp_list.append(dict(word_tuple))
             >>> print(tmp_list)
             [{'think_trans': 1, 'passive': 0, 'confirmed': 0, 'vocalized': u'اِسْتَقَلَّ', 'stamped': u'ستقل', 'future_moode': 0, 'triliteral': 0, 'future': 0, 'unthink_trans': 0, 'past': 0, 'unvocalized': u'استقل', 'future_type': u'َ', 'double_trans': 0, 'normalized': u'استقل', 'reflexive_trans': 0, 'imperative': 0, 'transitive': 1, 'root': u'قلل', 'id': 7495},
             {'think_trans': 1, 'passive': 0, 'confirmed': 0, 'vocalized': u'كَذَبَ', 'stamped': u'كذب', 'future_moode': 0, 'triliteral': 1, 'future': 0, 'unthink_trans': 0, 'past': 0, 'unvocalized': u'كذب', 'future_type': u'كسرة', 'double_trans': 0, 'normalized': u'كذب', 'reflexive_trans': 0, 'imperative': 0, 'transitive': 1, 'root': u'كذب', 'id': 1072},
