@@ -100,6 +100,10 @@ class NounTupleTestCase(unittest.TestCase):
         self.assertCountEqual(ntuple["stamped"], "كذب")
         self.assertCountEqual(ntuple.get("stamped", ""), "كذب")
 
+        #
+        self.assertTrue(isinstance(dict(ntuple), dict))
+
+
     def test_calculated_features(self):
         """Test lookup"""
         mydict = arz.ArabicDictionary('verbs')
@@ -109,7 +113,7 @@ class NounTupleTestCase(unittest.TestCase):
         # test features of one word
         lemma_dict = dict(lemma_list[0])
         ntuple = NounTuple(lemma_dict)
-        lemma_dict = dict(lemma_dict)
+        # lemma_dict = dict(lemma_dict)
         # assert features
         self.assertEqual(ntuple.get_gender(),'مذكر')
         self.assertEqual(ntuple.is_feminine(), False)

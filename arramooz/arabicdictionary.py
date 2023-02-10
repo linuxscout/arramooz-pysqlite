@@ -14,12 +14,6 @@
 Arabic Dictionary Class from Arramooz Al Waseet.
 Used in multiporpus morpholigical treatment
 """
-from __future__ import (
-    absolute_import,
-    print_function,
-    unicode_literals,
-    division,
-    )
 import re
 import os, os.path
 #from pysqlite2 import dbapi2 as sqlite
@@ -27,6 +21,8 @@ import sqlite3 as sqlite
 import sys
 FILE_DB = u"data/arabicdictionary.sqlite"
 import pyarabic.araby as araby
+
+from . import nountuple
 class ArabicDictionary:
     """
     Arabic dictionary Class
@@ -40,11 +36,11 @@ class ArabicDictionary:
         >>> wordlist = [u"استقلّ", u'استقل', u"كذب"]
         >>> tmp_list = []
         >>> for word in wordlist:
-        >>> foundlist = mydict.lookup(word)
-        >>> for word_tuple in foundlist:
-        >>>     word_tuple = dict(word_tuple)        
-        >>>     vocalized = word_tuple['vocalized']
-        >>>     tmp_list.append(dict(word_tuple))
+        >>>     foundlist = mydict.lookup(word)
+        >>>     for word_tuple in foundlist:
+        >>>         word_tuple = dict(word_tuple)
+        >>>         vocalized = word_tuple['vocalized']
+        >>>         tmp_list.append(dict(word_tuple))
         >>> print(tmp_list)
         [{'think_trans': 1, 'passive': 0, 'confirmed': 0, 'vocalized': u'اِسْتَقَلَّ', 'stamped': u'ستقل', 'future_moode': 0, 'triliteral': 0, 'future': 0, 'unthink_trans': 0, 'past': 0, 'unvocalized': u'استقل', 'future_type': u'َ', 'double_trans': 0, 'normalized': u'استقل', 'reflexive_trans': 0, 'imperative': 0, 'transitive': 1, 'root': u'قلل', 'id': 7495},
         {'think_trans': 1, 'passive': 0, 'confirmed': 0, 'vocalized': u'كَذَبَ', 'stamped': u'كذب', 'future_moode': 0, 'triliteral': 1, 'future': 0, 'unthink_trans': 0, 'past': 0, 'unvocalized': u'كذب', 'future_type': u'كسرة', 'double_trans': 0, 'normalized': u'كذب', 'reflexive_trans': 0, 'imperative': 0, 'transitive': 1, 'root': u'كذب', 'id': 1072},
@@ -204,20 +200,19 @@ class ArabicDictionary:
 
         Example:
             >>> import arramooz.arabicdictionary 
+            >>> import arramooz.arabicdictionary
             >>> mydict = arramooz.arabicdictionary.ArabicDictionary('verbs')
             >>> wordlist = [u"استقلّ", u'استقل', u"كذب"]
             >>> tmp_list = []
             >>> for word in wordlist:
-            >>>     foundlist = mydict.lookup(word)
-            >>>     for word_tuple in foundlist:
-            >>>         word_tuple = dict(word_tuple)
-            >>>         vocalized = word_tuple['vocalized']
-            >>>         tmp_list.append(dict(word_tuple))
-            >>> print(tmp_list)
-            [{'think_trans': 1, 'passive': 0, 'confirmed': 0, 'vocalized': u'اِسْتَقَلَّ', 'stamped': u'ستقل', 'future_moode': 0, 'triliteral': 0, 'future': 0, 'unthink_trans': 0, 'past': 0, 'unvocalized': u'استقل', 'future_type': u'َ', 'double_trans': 0, 'normalized': u'استقل', 'reflexive_trans': 0, 'imperative': 0, 'transitive': 1, 'root': u'قلل', 'id': 7495},
-            {'think_trans': 1, 'passive': 0, 'confirmed': 0, 'vocalized': u'كَذَبَ', 'stamped': u'كذب', 'future_moode': 0, 'triliteral': 1, 'future': 0, 'unthink_trans': 0, 'past': 0, 'unvocalized': u'كذب', 'future_type': u'كسرة', 'double_trans': 0, 'normalized': u'كذب', 'reflexive_trans': 0, 'imperative': 0, 'transitive': 1, 'root': u'كذب', 'id': 1072},
-            {'think_trans': 1, 'passive': 0, 'confirmed': 0, 'vocalized': u'كَذَّبَ', 'stamped': u'كذب', 'future_moode': 0, 'triliteral': 0, 'future': 0, 'unthink_trans': 0, 'past': 0, 'unvocalized': u'كذب', 'future_type': u'َ', 'double_trans': 0, 'normalized': u'كذب', 'reflexive_trans': 0, 'imperative': 0, 'transitive': 1, 'root': u'كذب', 'id': 2869}]
-
+            ...     foundlist = mydict.lookup(word)
+            ...     for word_tuple in foundlist:
+            ...         print(dict(word_tuple))
+            ...
+            {'id': 4743, 'vocalized': 'اِسْتَقَلَّ', 'unvocalized': 'استقل', 'root': 'قلل', 'normalized': 'استقل', 'stamped': 'ستقل', 'future_type': 'فتحة', 'triliteral': 0, 'transitive': 1, 'double_trans': 0, 'think_trans': 1, 'unthink_trans': 0, 'reflexive_trans': 0, 'past': 0, 'future': 0, 'imperative': 0, 'passive': 0, 'future_moode': 0, 'confirmed': 0}
+            {'id': 118, 'vocalized': 'كَذَّبَ', 'unvocalized': 'كذب', 'root': 'كذب', 'normalized': 'كذب', 'stamped': 'كذب', 'future_type': 'فتحة', 'triliteral': 0, 'transitive': 1, 'double_trans': 0, 'think_trans': 1, 'unthink_trans': 0, 'reflexive_trans': 0, 'past': 0, 'future': 0, 'imperative': 0, 'passive': 0, 'future_moode': 0, 'confirmed': 0}
+            {'id': 10205, 'vocalized': 'كَذَبَ', 'unvocalized': 'كذب', 'root': 'كذب', 'normalized': 'كذب', 'stamped': 'كذب', 'future_type': 'كسرة', 'triliteral': 1, 'transitive': 1, 'double_trans': 0, 'think_trans': 1, 'unthink_trans': 0, 'reflexive_trans': 0, 'past': 0, 'future': 0, 'imperative': 0, 'passive': 0, 'future_moode': 0, 'confirmed': 0}
+            >>>
         """
         idlist = []
         normword = araby.normalize_hamza(normalized)
@@ -274,6 +269,7 @@ class ArabicDictionary:
                 # return self.curser.fetchall()
                 for row in self.cursor:
                     idlist.append(row)
+                    # idlist.append(nountuple.NounTuple(row))
             return idlist
         except  sqlite.OperationalError:
             return []

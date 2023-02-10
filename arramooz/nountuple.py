@@ -385,6 +385,12 @@ class NounTuple:
         return attribute
         """
         return self.noun_dict.get(key,None)
+
+    def __iter__(self):
+        """
+        :return:
+        """
+        yield from self.noun_dict.items()
         
     def get(self, key, default):
         """
