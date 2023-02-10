@@ -320,6 +320,12 @@ class NounTuple:
         """
         return not self.is_mamnou3_sarf()
 
+    def accept_plural_tanwin_nasb(self,):
+        """
+         return True if the word  accept plural_tanwin_nasb
+        """
+        return bool(self.noun_dict.get('plural_tanwin_nasb',0))
+
     def accept_annex(self,):
         """
          return True if the word  accept annex,

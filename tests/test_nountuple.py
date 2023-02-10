@@ -63,7 +63,7 @@ class NounTupleTestCase(unittest.TestCase):
         self.assertEqual(ntuple.get_unvocalized(),'كذب')
         self.assertEqual(ntuple.get_normalized(),'كذب')
         self.assertEqual(ntuple.get_stamped(),'كذب')
-        self.assertEqual(ntuple.get_wordtype(),'مصدر')
+        self.assertEqual(ntuple.get_wordtype(),'مصدر:مصدر')
 
         self.assertEqual(ntuple.get_root(),'كذب')
         self.assertEqual(ntuple.get_wazn(),'')
@@ -94,6 +94,9 @@ class NounTupleTestCase(unittest.TestCase):
         self.assertEqual(ntuple.accept_ha_suffix(), True)
         self.assertEqual(ntuple.accept_k_prefix(), True)
         self.assertEqual(ntuple.accept_annex(), False)
+        self.assertEqual(ntuple.accept_tanwin(), True)
+        # To be fixed
+        self.assertEqual(ntuple.accept_plural_tanwin_nasb(), False)
 
         #print(ntuple)
         # TEST   []
@@ -125,7 +128,7 @@ class NounTupleTestCase(unittest.TestCase):
 
         self.assertEqual(ntuple.is_mamnou3_sarf(), False)
         self.assertEqual(ntuple.accept_tanwin(), True)
-        tags = ['منسوب', 'مفرد', 'مصدر', 'اسم']
+        tags = ['منسوب', 'مفرد', 'مصدر','مصدر:مصدر' ,'اسم']
         self.assertCountEqual(ntuple.get_tags(), tags )
 
         #print(ntuple)

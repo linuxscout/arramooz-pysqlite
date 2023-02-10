@@ -34,7 +34,8 @@ class ArramoozTestCase(unittest.TestCase):
         """Test lookup"""
         mydict = arz.ArabicDictionary('verbs') 
         #~ wordlist = [u"استقلّ", u'استقل', u"كذب"]
-        #~ foundlist = mydict.lookup(word)       
+        #~ foundlist = mydict.lookup(word)
+
         self.assertEqual(len(mydict.lookup(u"استقلّ")), 0)
         self.assertEqual(len(mydict.lookup(u'استقل')), 1)
         self.assertEqual(len(mydict.lookup(u"كذب")), 2)
