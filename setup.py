@@ -7,7 +7,7 @@ from io import open
 def readme():
     with open('README.md', encoding="utf8") as f:
         return f.read()
-setup (name='arramooz_pysqlite', version='0.4.1',
+setup (name='arramooz_pysqlite', version='0.4.2',
       description='Arramooz: Arabic Dictionary for Morphological analysis - python + sqlite',
       long_description = readme(),  
       long_description_content_type='text/markdown',     

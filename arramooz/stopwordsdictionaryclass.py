@@ -73,14 +73,18 @@ class StopWordsDictionary:
         else: # otherwise this is a regular python script
             base  =  os.path.dirname(os.path.realpath(__file__))
         file_path = os.path.join(base, FILE_DB_FREQ)
-        
+
         if os.path.exists(file_path):
+            file_uri = "file:"+file_path+"?mode=ro"
             try:
-                self.db_connect  =  sqlite.connect(file_path)
-                self.db_connect.row_factory  =  sqlite.Row                 
-                self.cursor  =  self.db_connect.cursor()
+                self.db_connect  =  sqlite.connect(file_uri,check_same_thread=False, uri=True)
+
             except sqlite.OperationalError:
                 print("Fatal Error Can't find the database file", file_path)
+            else:
+                self.db_connect.row_factory  =  sqlite.Row                 
+                self.cursor  =  self.db_connect.cursor()                
+                
 
         else:
             print( u" ".join(["Inexistant File", file_path, " current dir ",

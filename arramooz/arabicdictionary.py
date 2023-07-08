@@ -76,14 +76,15 @@ class ArabicDictionary:
         else: # otherwise this is a regular python script
             base = os.path.dirname(os.path.realpath(__file__))
         file_path = os.path.join(base, FILE_DB)
-
         if os.path.exists(file_path):
+            file_uri= "file:"+file_path+"?mode=ro"
             try:
-                self.db_connect = sqlite.connect(file_path, check_same_thread=False)
-                self.db_connect.row_factory = sqlite.Row 
-                self.cursor = self.db_connect.cursor()
+                self.db_connect = sqlite.connect(file_uri, check_same_thread=False, uri=True)
             except  IOError:
                 print("Fatal Error Can't find the database file", file_path)
+            else: # connect with success
+                self.db_connect.row_factory = sqlite.Row 
+                self.cursor = self.db_connect.cursor()
         else:
             print(u" ".join(["Inexistant File", file_path, " current dir ", 
             os.curdir]).encode('utf8'))
@@ -102,10 +103,10 @@ class ArabicDictionary:
     def __del__(self):
         """
         Delete instance and close database connection
-        
         """
-        if self.db_connect:
-            self.db_connect.close()
+        if hasattr(self, "db_connect"):
+            if self.db_connect:
+                self.db_connect.close()
 
 
     def get_entry_by_id(self, idf):
@@ -126,16 +127,12 @@ class ArabicDictionary:
         sql = u"select * FROM %s WHERE id='%s'" % (self.table_name, idf)
         try:
             self.cursor.execute(sql)
-            if self.cursor:
-                return self.cursor.fetchall()            
-                # for row in self.cursor:
-                    # entry_dict = {}
-                    # for numKey in self.attrib_num_index:
-                        # textKey = self.attrib_num_index[numKey]
-                        # entry_dict[textKey] = row[numKey]
-                    # return entry_dict
+          
         except  sqlite.OperationalError:
             return False
+        else:
+            if self.cursor:
+                return self.cursor.fetchall() 
         return False
 
     def get_attrib_by_id(self, idf, attribute):
@@ -183,11 +180,13 @@ class ArabicDictionary:
         try:
             self.cursor.execute(sql)
             #~entry_dict = {}
+        except  sqlite.OperationalError:
+            return False
+        else:
             if self.cursor:
                 for row in self.cursor:
                     return  row[attribute]                        
-        except  sqlite.OperationalError:
-            return False
+
         return False
 
     def lookup(self, normalized):
@@ -222,13 +221,16 @@ class ArabicDictionary:
          normword)
         try:
             self.cursor.execute(sql)
+        except AttributeError:
+            return []            
+        except sqlite.OperationalError:
+            return []  
+        else:
             if self.cursor:
                 # return self.curser.fetchall()
                 for row in self.cursor:
                     idlist.append(row)
-            return idlist
-        except  sqlite.OperationalError:
-            return []
+            return idlist            
     def exists_as_stamp(self, word):
         """
         look up for word if exists by using the stamp index, 
